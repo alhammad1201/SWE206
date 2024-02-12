@@ -19,16 +19,19 @@ public class Sorter {
     }
 
     public static void sort(ArrayList<String> students){
-        for (int i = 1; i < students.size(); i++) {
-            String key = students.get(i);
-            int j = i - 1;
-            while (j >= 0 && students.get(j).compareTo(key) > 0) {
-                students.set(j + 1, students.get(j));
-                j = j - 1;
+        int n = students.size();
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (students.get(j).compareTo(students.get(minIndex)) < 0) {
+                    minIndex = j;
+                }
             }
-            students.set(j + 1, key);
+            String temp = students.get(minIndex);
+            students.set(minIndex, students.get(i));
+            students.set(i, temp);
         }
-        System.out.println("Insertion Sorted List:");
+        System.out.println("Selection Sorted List:");
         for (String student : students) {
             System.out.println(student);
         }
